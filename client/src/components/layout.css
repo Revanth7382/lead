@@ -1,0 +1,316 @@
+/* ===== LAYOUT MODERN UI - FULL WINDOW RESPONSIVE ===== */
+:root {
+    /* Light mode colors */
+    --bg-body: #f9fafc;
+    --bg-sidebar: #ffffff;
+    --bg-header: #ffffff;
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --text-primary: #1a2639;
+    --text-secondary: #64748b;
+    --border-light: #e9eef2;
+    --border-active: #2463eb;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.05);
+    --radius-md: 16px;
+    --radius-sm: 12px;
+    --transition: all 0.2s ease;
+
+    /* Primary colors */
+    --primary: #2463eb;
+    --primary-light: #eef4ff;
+}
+
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-body: #0f172a;
+        --bg-sidebar: #1e293b;
+        --bg-header: #1e293b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+        --border-light: #334155;
+        --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+        --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+/* ----- APP CONTAINER (FLEX LAYOUT) ----- */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg-body);
+    position: relative;
+}
+
+/* ----- SIDEBAR (DESKTOP + MOBILE) ----- */
+.sidebar {
+    width: 280px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.sidebar-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary) 0%, #4f8af0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+.close-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.close-btn:hover {
+    background-color: var(--border-light);
+    color: var(--text-primary);
+}
+
+.sidebar-nav {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    display: block;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.nav-item:hover {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.nav-item.active {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+    border-left: 3px solid var(--primary);
+}
+
+/* ----- MAIN SECTION (RIGHT SIDE) ----- */
+.main-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: var(--bg-body);
+}
+
+/* ----- TOP HEADER ----- */
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background-color: var(--bg-header);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.menu-btn:hover {
+    background-color: var(--border-light);
+}
+
+.top-header h1 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+/* ----- MAIN CONTENT ----- */
+.main-content {
+    flex: 1;
+    padding: 24px;
+    width: 100%;
+}
+
+.content-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ----- OVERLAY (MOBILE) ----- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-overlay);
+    backdrop-filter: blur(4px);
+    z-index: 20;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ----- RESPONSIVE (MOBILE & TABLET) ----- */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 30;
+        transform: translateX(-100%);
+        box-shadow: var(--shadow-md);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .close-btn {
+        display: block;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .top-header {
+        padding: 14px 20px;
+    }
+
+    .top-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 16px;
+    }
+
+    .top-header {
+        padding: 12px 16px;
+    }
+
+    .sidebar {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* ----- DARK MODE TOGGLE PLACEHOLDER (adjust as needed) ----- */
+/* DarkModeToggle component – assuming it's a button with icon */
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+    background-color: var(--border-light);
+    color: var(--text-primary);
+}
+
+/* Ensure DarkModeToggle is correctly placed in header */
+.top-header .dark-mode-toggle {
+    margin-left: auto;
+}
+
+/* ----- SCROLLBAR STYLING (modern) ----- */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--border-light);
+    border-radius: 20px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-secondary);
+}
