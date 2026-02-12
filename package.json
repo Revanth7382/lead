@@ -1,5 +1,8 @@
-{
-  "dependencies": {
-    "gh-pages": "^6.3.0"
-  }
+{"homepage": "https://Revanth7382.github.io/lead",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+
+  
 }
